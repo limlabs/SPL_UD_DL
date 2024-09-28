@@ -1,5 +1,7 @@
+*.DS_Store
 *.pyc
 src/**/*.pyc
+.ipynb_checkpoints/
 
 output/models
 data/single_lesion_database

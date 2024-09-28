@@ -70,6 +70,7 @@ RUN pip install tf-keras-vis
 RUN conda install tensorflow=2.10.0 --solver=libmamba
 RUN conda install keras=2.10.0
 RUN pip install matplotlib
+RUN pip install nbstripout
 
 ENV DISPLAY=host.docker.internal:0
 ENV QT_X11_NO_MITSHM=1
