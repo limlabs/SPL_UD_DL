@@ -26,6 +26,10 @@ RUN apt-get update && apt-get install -y \
     libhdf5-dev \
     pkg-config \
     ffmpeg \
+    x11-apps \
+    xvfb \
+    #libgl1-mesa-glx \
+    #mesa-utils \
     && apt-get clean
 
     # Conditional logic based on architecture
@@ -72,5 +76,9 @@ RUN conda install keras=2.10.0
 RUN pip install matplotlib
 RUN pip install nbstripout
 
-ENV DISPLAY=host.docker.internal:0
+# X11 forwarding setup
 ENV QT_X11_NO_MITSHM=1
+#Linux Display Env:
+ENV DISPLAY=:0
+#MacOS and Windows Display Env:
+#ENV DISPLAY=host.docker.internal:0
