@@ -47,7 +47,17 @@
 				"ms-azuretools.vscode-docker"
 			]
 		}
-	}
+	},
+	// NOTE: You must run `xhost +local:docker` on the host machine before starting the container.
+	"runArgs": [
+		"--env",
+		"DISPLAY=${localEnv:DISPLAY}",
+		"--env",
+		"QT_X11_NO_MITSHM=1"
+	]
+
+	// "postStartCommand":
+	//	"echo 'Devcontainer was set up successfully!'"
 
 	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "devcontainer"
