@@ -3,11 +3,11 @@
 src/**/*.pyc
 .ipynb_checkpoints/
 
-output/models
+output/models/*
+output/analysis/*
 data/single_lesion_database
 data/wide_field_database
 src/convnetskeras/__pycache__
 src/saliency_map/__pycache__/__init__.cpython-37.pyc
-output/analysis
 
 data/ovio
