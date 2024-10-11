@@ -73,9 +73,21 @@ RUN pip install matplotlib
 RUN pip install nbstripout
 
 ### Hardcoded X11 forwarding setup
-#ENV QT_X11_NO_MITSHM=1
-
+ENV QT_X11_NO_MITSHM=1
 ###Linux Display Env:
 #ENV DISPLAY=:0
 ### MacOS and Windows Display ENv
 #ENV DISPLAY=host.docker.internal:0
+
+# Detect the DISPLAY environment variable based on the host OS and write
+RUN if [ "$(uname -s)" = 'Linux' ]; then \
+      #Linux      
+      echo "export DISPLAY=\$DISPLAY" >> /etc/profile.d/display.sh; \
+      echo "export DISPLAY=\$DISPLAY" >> ~/.bashrc; \
+    else \
+      #MacOS or Windows
+      echo "export DISPLAY=host.docker.internal:0" >> /etc/profile.d/display.sh; \
+      echo "export DISPLAY=host.docker.internal:0" >> ~/.bashrc; \
+    fi
+# Set DISPLAY variable
+RUN . /etc/profile.d/display.sh
