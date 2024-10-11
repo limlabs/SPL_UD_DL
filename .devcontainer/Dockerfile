@@ -79,15 +79,15 @@ ENV QT_X11_NO_MITSHM=1
 ### MacOS and Windows Display ENv
 #ENV DISPLAY=host.docker.internal:0
 
-# Detect the DISPLAY environment variable based on the host OS and write
+# Detect the DISPLAY environment variable based on the host OS and add to env
 RUN if [ "$(uname -s)" = 'Linux' ]; then \
-      #Linux      
+      #Linux & Windows+Docker
       echo "export DISPLAY=\$DISPLAY" >> /etc/profile.d/display.sh; \
       echo "export DISPLAY=\$DISPLAY" >> ~/.bashrc; \
     else \
-      #MacOS or Windows
+      #Default, MacOS
       echo "export DISPLAY=host.docker.internal:0" >> /etc/profile.d/display.sh; \
       echo "export DISPLAY=host.docker.internal:0" >> ~/.bashrc; \
     fi
-# Set DISPLAY variable
+# Set DISPLAY variable based on detected OS
 RUN . /etc/profile.d/display.sh
