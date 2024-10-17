@@ -10,25 +10,25 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install necessary dependencies
 RUN apt-get update && apt-get install -y \
-      bash \
-      wget \
-      bzip2 \
-      ca-certificates \
-      libglib2.0-0 \
-      libxext6 \
-      libsm6 \
-      libxrender1 \
-      git \
-      curl \
-      vim \
-      build-essential \
-      python3-dev \
-      libhdf5-dev \
-      pkg-config \
-      ffmpeg \
-      && apt-get clean
+    bash \
+    wget \
+    bzip2 \
+    ca-certificates \
+    libglib2.0-0 \
+    libxext6 \
+    libsm6 \
+    libxrender1 \
+    git \
+    curl \
+    vim \
+    build-essential \
+    python3-dev \
+    libhdf5-dev \
+    pkg-config \
+    ffmpeg \
+    && apt-get clean
 
-      # Conditional logic based on architecture
+    # Conditional logic based on architecture
 RUN ARCH=$(uname -m) && echo "Architecture detected: $ARCH"
       # x86_64   aarch64
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py37_22.11.1-1-Linux-${MINICONDA_ARCH}.sh \
@@ -81,13 +81,13 @@ ENV QT_X11_NO_MITSHM=1
 
 # Detect the DISPLAY environment variable based on the host OS and add to env
 RUN if [ "$(uname -s)" = 'Linux' ]; then \
-      #Linux & Windows+Docker
-      echo "export DISPLAY=\$DISPLAY" >> /etc/profile.d/display.sh; \
-      echo "export DISPLAY=\$DISPLAY" >> ~/.bashrc; \
+    	#Linux & Windows+Docker
+    	echo "export DISPLAY=\$DISPLAY" >> /etc/profile.d/display.sh; \
+    	echo "export DISPLAY=\$DISPLAY" >> ~/.bashrc; \
     else \
-      #Default, MacOS
-      echo "export DISPLAY=host.docker.internal:0" >> /etc/profile.d/display.sh; \
-      echo "export DISPLAY=host.docker.internal:0" >> ~/.bashrc; \
+      	#Default, MacOS
+    	echo "export DISPLAY=host.docker.internal:0" >> /etc/profile.d/display.sh; \
+		echo "export DISPLAY=host.docker.internal:0" >> ~/.bashrc; \
     fi
 # Set DISPLAY variable based on detected OS
 RUN . /etc/profile.d/display.sh
