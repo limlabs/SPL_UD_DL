@@ -10,27 +10,27 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install necessary dependencies
 RUN apt-get update && apt-get install -y \
-    bash \
-    wget \
-    bzip2 \
-    ca-certificates \
-    libglib2.0-0 \
-    libxext6 \
-    libsm6 \
-    libxrender1 \
-    git \
-    curl \
-    vim \
-    build-essential \
-    python3-dev \
-    libhdf5-dev \
-    pkg-config \
-    ffmpeg \
-    && apt-get clean
+      bash \
+      wget \
+      bzip2 \
+      ca-certificates \
+      libglib2.0-0 \
+      libxext6 \
+      libsm6 \
+      libxrender1 \
+      git \
+      curl \
+      vim \
+      build-essential \
+      python3-dev \
+      libhdf5-dev \
+      pkg-config \
+      ffmpeg \
+      && apt-get clean
 
     # Conditional logic based on architecture
 RUN ARCH=$(uname -m) && echo "Architecture detected: $ARCH"
-      # x86_64   aarch64
+    # x86_64   aarch64
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py37_22.11.1-1-Linux-${MINICONDA_ARCH}.sh \
             -O /tmp/anaconda.sh
 
@@ -85,7 +85,7 @@ RUN if [ "$(uname -s)" = 'Linux' ]; then \
     	echo "export DISPLAY=\$DISPLAY" >> /etc/profile.d/display.sh; \
     	echo "export DISPLAY=\$DISPLAY" >> ~/.bashrc; \
     else \
-      	#Default, MacOS
+      #Default, MacOS
     	echo "export DISPLAY=host.docker.internal:0" >> /etc/profile.d/display.sh; \
 		echo "export DISPLAY=host.docker.internal:0" >> ~/.bashrc; \
     fi
